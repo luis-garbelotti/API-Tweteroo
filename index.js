@@ -43,4 +43,21 @@ server.post('/tweets', (req, res) => {
     }
 });
 
+server.get('/tweets', (req, res) => {
+
+    const reverseTweets = tweetsFull.reverse();
+    let filteredTweets = [];
+
+    if (reverseTweets.length > 10) {
+        for (let i = 0; i < 10; i++) {
+            filteredTweets.push(reverseTweets[i]);
+        }
+    } else {
+        filteredTweets = reverseTweets;
+    }
+
+    res.send(filteredTweets);
+
+});
+
 server.listen(5000);
